@@ -1,0 +1,73 @@
+
+1.	Classify each public method of RatNum as a creator, observer, producer or mutator.
+
+		RatNum(int n)						creator
+		RatNum(int n, int d)				creator
+		isNaN()								observer
+		isNegative()						observer
+		isPositive()						observer
+		compareTo(RatNum rn)				observer
+		doubleValue()						observer
+		intValue()							observer
+		floatValue()						observer
+		longValue()							observer
+		negate()							producer
+		add(RatNum arg)						producer
+		sub(RatNum arg)						producer
+		mul(RatNum arg)						producer
+		div(RatNum arg)						producer
+		hashCode()							observer
+		equals(/*@Nullable*/ Object obj)	observer
+		toString()							observer
+		valueOf(String ratStr)				producer
+
+
+
+
+2.	add, sub, mul, and div all require that "arg != null". This is because all of the methods access fields of 'arg' without checking 
+	if 'arg' is null first. But the methods also access fields of 'this' without checking for null; why is "this != null" absent from 
+	the requires-clause for the methods?
+
+		"this != null" is not a required clause because the "this" would have already been defined as either NaN, ZERO, or a RatNum. None 
+		of the given methods are able to convert "this" to null so it is unnecessary to check for it.
+
+
+
+
+3.	Why is RatNum.valueOf(String) a static method? What alternative to static methods would allow one to accomplish the same goal of 
+	generating a RatNum from an input String?
+
+		It is static so that the function can be called without having an already existing RatNum object (to create a new RatNum object). 
+		A possible alternative to this method is to create a new constructor that takes a string as an input and execute parsing in a 
+		relatively similar manner.
+
+
+
+
+4.	add, sub, mul, and div all end with a statement of the form return new RatNum ( numerExpr , denomExpr);. Imagine an implementation of 
+	the same function except the last statement is:
+		this.numer = numerExpr;
+		this.denom = denomExpr;
+		return this;
+	For this question, pretend that the this.numer and this.denom fields are not declared as final so that these assignments compile properly. 
+	How would the above changes fail to meet the specifications of the function (Hint: take a look at the @requires and @modifies statements, 
+	or lack thereof) and fail to meet the specifications of the RatNum class?
+
+		This would fail the specifications of the functions as the functions holds no @modifies statements and without these statements, we are 
+		not meant to change any of the variables in the function. It also fails class specifications as RatNum is meant to be immutable but such
+		changes make "numer" and "denom" mutable objects.
+
+
+
+
+5.	Calls to checkRep are supposed to catch violations in the classes' invariants. In general, it is recommended that one call checkRep at 
+	the beginning and end of every method. In the case of RatNum, why is it sufficient to call checkRep only at the end of the constructors? 
+	(Hint: could a method ever modify a RatNum such that it violates its representation invariant? Could a method change a RatNum at all? 
+	How are changes to instances of RatNum prevented?)
+
+		It is sufficient because RatNum is specified to be immutable and therefore, the values of the variables never change following their
+		initialization at the constructors. This is because, as long as they are initialized to be correct or incorrect, they will not change
+		throughout any of the methods. Changes are also further prevented through the use of final for the variable values.
+
+
+

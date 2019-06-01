@@ -1,0 +1,4 @@
+
+Yes, I collaborated with two other students, Seamas Liu and Ryan Lehman. However, it wasn't to any great extent as it was mostly clarifying
+possible mistakes in concepts such as whether a postcondition had to be the strongest possible in question 2. Mainly, it was clarification
+of differences in small uncertainties.

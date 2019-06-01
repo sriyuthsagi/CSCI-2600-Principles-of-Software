@@ -1,0 +1,23 @@
+
+1.	We have chosen the array representation of a polynomial: RatNum[] coeffs, where coeffs[i] stores the coefficient of the term of 
+	exponent i. An alternative data representation is the list-of-terms representation: List<Term> terms, where each Term object stores the 
+	term's RatNum coefficient and integer exponent. The beauty of the ADT methodology is that we can switch from one representation to the 
+	other without affecting the clients of our RatPoly! Briefly list the advantages and disadvantages of the array representation versus the 
+	list-of-terms representation. Where did you include calls to checkRep (at the beginning of methods, the end of methods, the beginning of 
+	constructors, the end of constructors, some combination)? Why?
+
+		With array representation, the exponent is modified automatically due to indexes so there is less data to manually store and update.
+		However, list-of-terms allows easier size modifications to change the number of values stored by the list. checkRep was called at 
+		the end of constructors and why was explained in the next question.
+
+
+
+
+2.	Where did you include calls to checkRep in RatPoly (at the beginning of methods, the end of methods, the beginning of constructors, 
+	the end of constructors, some combination)? Why?
+
+	I included calls at the end of constructors because RatPolys must be checked after each one is created to look for problems. The other 
+	point was that the only method that involved modifying a RatPoly involved either multiplying it by a scalar (which can not cause it to 
+	change) or reinitializing it to 0 (which calls a constructor anyway)
+
+

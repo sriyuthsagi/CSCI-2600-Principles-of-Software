@@ -1,0 +1,147 @@
+
+
+Problem 1
+
+a)	m^n = result * x^y
+
+b)	Before the loop, x is initialized to m, y to n and result to 1. Plugging these values into the equation, this gives:
+					result * x^y = (1) * (m)^(n) = m^n
+	This is equivalent to m^n, so the base case is satisfied.
+	
+c)	If we assume m^n = result * x^y holds to the k'th iteration, show that it holds to the (k+1)'th iteration:
+	For the (k+1)'th iteration, it has two distinct paths with y being either even or odd. 
+	
+	If y is even, x changes to x^2 while y changes to y/2 and result remains the same. Thus, the new expression will be result * (x^2)^(y/2).
+	This is still the same as result * x^y after being simplified and therefore, this path satisfies the inductive step.
+	
+	The other path is if y is odd. In this case, x does not change, y becomes y-1 and result becomes result*x. The new expression in this
+	case will be (result*x) * x^(y-1) which, following simplification, still becomes result * x^y and therefore satisfies the inductive step.
+	
+	Thus, both paths satisfy the inductive step and the overall loop invariant thus satisfies the inductive step.
+	
+d)	The exit condition is y == 0 and the loop invariant is m^n = result * x^y. Both of these combine to form m^n = result * x^(0) upon exit.
+	This can be simplified to give m^n = result * 1 or m^n = result which fully satisfies the given postcondition.
+	
+e)	A suitable decrementing function is D = y. This is because y is always decreasing with each iteration. When y is even, it becomes y/2
+	and y >= 0 so this represents a decrease and when it is odd, it directly becomes y-1 which also represents a decrease. Additionally,
+	D = 0 also represents the exit condition of y == 0.
+
+
+
+Problem 2
+
+a)	int dutch_flag(color[] arr) {
+		
+		int k = 0;
+		int i = 0;
+		
+		
+		while (i < arr.length) {
+			
+			if (arr[i] == red) {
+				swap(arr, i, k);
+				k++;
+			}
+			
+			i++;
+		}
+		
+		return k;
+		
+	}
+
+b)	arr[0..k-1] == red && arr[k..arr.length-1] == blue
+
+c)	A single loop so a single invariant: arr[0..k-1] == red && k <= i
+
+
+
+Problem 3
+
+function Factorial(n: int): int
+  requires n >= 0
+{
+  if n == 0 then 1 else n * Factorial(n-1)
+}
+ 
+method LoopyFactorial(n: int) returns (u: int)
+  requires n >= 0
+  ensures u == Factorial(n)
+  {
+    u := 1;
+    var r := 0;
+    while (r < n) 
+      invariant u == Factorial(r) && r <= n
+    {
+      var v := u;
+      var s := 1;
+      while (s<=r) 
+        invariant u == v*s && s <= r+1
+      {
+        u:=u+v;
+        s:=s+1;
+      }
+      r:=r+1;
+      assert u == v*r;
+    }
+  }
+  
+Inner Loop Proof:
+
+Base Step
+	Before the loop, v is initialized to u and s is initialized to 1. Plugging these values into the first part of the invariant,
+	this gives:
+					v*s = (u)*(1) = u
+	This is equivalent to u, so the base case is satisfied for the first part of the invariant. For the second part, r starts at 0 and
+	iterates so 0 <= r. This is equivalent to 1 <= r+1 and because s = 1, plugging it in results in:
+					s <= r+1
+	This satisfies the base case for the second part of the invariant and thus, the base step is fully satisfied.
+
+Induction Step
+	If we assume u == v*s && s <= r+1 holds to the k'th iteration, show that it holds to the (k+1)'th iteration:
+	For the (k+1)'th iteration, u becomes u+v and s becomes s+1 while r and v do not change. 
+	
+	For the first part of the invariant, plugging the new values into the equation will result in (u+v) = v*(s+1).
+	This is equivalent to u+v = v*s + v which is equivalent to u = v+s. Thus the first part of the invariant satisfies the inductive step.
+	
+	For the second part of the invariant, plugging the new values into the equation will result in s+1 <= r+1.
+	This is equivalent to s <= r which holds unless s > r at the k'th step but this would not be possible as there would be no (k+1)'th
+	iteration in such a case. Thus the second part of the invariant satisfies the inductive step.
+	
+	As both parts of the invariant satisfy the inductive step, the invariant as a whole also satisfies the inductive step.
+	
+Guarantee Postcondition
+	The exit condition is s > r and the loop invariant is u == v*s && s <= r+1. Both of these combine to form s = r+1 upon exit.
+	After plugging this expression into the other part of the invariant, this gives u == v*(r+1). However, with the addition of another
+	expression following the loop which will convert r+1 to r, this will give u = v*r which fully satisfies the given postcondition in 
+	the form of an assertion.
+
+Outer Loop Proof:
+
+Base Step
+	Before the loop, u is initialized to 1 and r is initialized to 0. Plugging these values into the first part of the invariant,
+	this gives:
+					Factorial(r) = Factorial(0) = 1 = u
+	This is equivalent to u, so the base case is satisfied for the first part of the invariant. For the second part, the precondition
+	states that 0 <= n and, as r = 0, this gives:
+					r <= n
+	This satisfies the base case for the second part of the invariant and thus, the base step is fully satisfied.
+
+Induction Step
+	If we assume u == Factorial(r) && r <= n holds to the k'th iteration, show that it holds to the (k+1)'th iteration:
+	For the (k+1)'th iteration, r becomes r+1 and u becomes v*(r+1) according to the inner loop postcondition and the following expression
+	r:=r+1.
+	
+	For the first part of the invariant, plugging the new values into the equation will result in (v*(r+1)) = Factorial(r)*(r+1).
+	This is equivalent to v*(r+1) = Factorial(r+1) = u+1. Thus the first part of the invariant satisfies the inductive step.
+	
+	For the second part of the invariant, plugging the new values into the equation will result in r+1 <= n.
+	This would hold unless r = n at the end of the k'th iteration which is not possible as such a case would fail the loop condition and
+	would not have a (k+1)'th loop. Thus the second part of the invariant satisfies the inductive step.
+	
+	As both parts of the invariant satisfy the inductive step, the invariant as a whole also satisfies the inductive step.
+	
+Guarantee Postcondition
+	The exit condition is r >= n and the loop invariant is u == Factorial(r) && r <= n. Both of these combine to form r == n upon exit.
+	After plugging this expression into the other part of the invariant, this gives u == Factorial(n). which is the expression we are 
+	looking for and fully satisfies the given postcondition.

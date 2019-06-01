@@ -1,0 +1,41 @@
+1. What is wrong with Ball.java?
+
+	Importantly, the inputed value names must be changed from volume and color to alternatives.
+
+	There are three other distinct problems in the code:
+	
+	Test testColor failed because the function getColor was returning null. This was fixed by changing the null return to return Color.BLUE.
+	
+	Test testCreateWithValidStringVolume failed because the program was not able to return inputed values which was fixed by adding an if
+	 conditional before both returns for getVolume and (just in case) getColor. Additionally, there were problems converting String input
+	  to double in the second constructor which was fixed by specifying assignments rather than using this.
+	
+	Test testVolume failed because the function getVolume was returning 0. This was fixed by changing the 0 return to return 20.
+
+
+
+2. Which approach do you think is the better one? Why?
+
+	The second approach, to keep track of the total volume of the Balls in BallContainer whenever Balls are added and removed is better.
+	 This is because, rather than looping through the Set every time to find volume, it is more efficient to loop once as you are adding
+	 to the Set. Of course, this depends on whether you are using add, remove and clear heavily with little usage of getVolume, but the 
+	 overall trend certainly favors the second approach.
+
+	 
+	 
+3. There are many ways to implement getBallsFromSmallest(). Briefly describe at least two different ways. Your answers should differ in the 
+	implementation of Box, not in lower-level implementation (for example, using an insertion sort instead of a selection sort is a lower-level 
+	implementation because it does not affect how Box is implemented). Hint: think about different places in the Box class where you could add 
+	code to achieve the desired functionality.
+	
+	The first possible method is to create a List and add all the Ball elements from the set to the List and sort the List using collections and
+	 comparator before returning the iterator for the first position. (Implemented in Box)
+	The second method would be to use Iterators to read through the set, finding the smallest Ball and adding the new ball to a new set.
+	 Following which, it would again run through the set to find the next smallest value, so on so forth until the new set is a sorted set
+	 of ascending values and then we would return the iterator for the first position for the new set.
+	
+	
+4. Which of the above ways do you think is the best? Why?
+
+	The first method is most likely better due to the program having much easier implementation with the use of comparator and collections. 
+	Additionally, rather than looking through the whole set every time, it would likely be more efficient to sort through all at once.

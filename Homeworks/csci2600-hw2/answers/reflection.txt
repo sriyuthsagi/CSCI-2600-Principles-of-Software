@@ -1,0 +1,9 @@
+
+1.      In retrospect, what could you have done better to reduce the time you spent solving this homework?
+	I believe that I spent a relatively short amount of time and any less time likely would have compromised the quality of my work.
+	
+	
+2.      What do you know now that you wish you had known before beginning the homework?
+	Through this homework, I believe I got a better grasp on formatting loop invariants, though my methods of proof did not see much 
+	change. In terms of knowledge wanted before hand other than in how to format loop invariant specifically, I think we covered everything
+	well.

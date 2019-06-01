@@ -1,0 +1,33 @@
+1. Why did Fibonacci fail the testThrowsIllegalArgumentException
+ test? What did you have to do to fix it?
+ 
+ 	The Fibonacci test failed because the first statement checked for
+ 	 all numbers less than or equal to 0 in order to throw an exception
+ 	 This is incorrect as 0 is a valid input which is not covered by the program.
+ 	 It was fixed by removing the = from the <= in the first if statement.
+ 
+ 
+ 
+2. Why did Fibonacci fail the testBaseCase test? What (if anything)
+ did you have to do to fix it?
+ 
+ 	In terms of why this test failed and its solution, it is largely similar
+ 	 to question 1 except that the testBaseCase is checking for the values of
+ 	 the base case to be equal rather than checking for the presence of an 
+ 	 exception. The solution is the same as question 1.
+ 
+ 
+ 
+3. Why did Fibonacci fail the testInductiveCase test? What (if anything)
+ did you have to do to fix it?
+ 
+ 	This test failed for a similar assertion to question 2 in that it checked for
+ 	 the correctness of Fibonacci values. However, the problem during this test came 
+ 	 from a combination of failure during 0 as well as two additional problems.
+ 	 The first was that 2 was considered to be part of the base case which it should
+ 	 not and the second is the recursive formula used:
+ 	 			getFibTerm(n + 1) - getFibTerm(n - 2)
+ 	 which does not match the formula required. The test was fixed by removing the
+ 	 = from <= in both the first and second if statements and changing the return to:
+ 	 			getFibTerm(n - 1) + getFibTerm(n - 2)
+ 

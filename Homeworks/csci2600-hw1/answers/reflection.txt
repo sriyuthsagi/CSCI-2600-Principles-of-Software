@@ -1,0 +1,16 @@
+
+1.     In retrospect, what could you have done better to reduce the time you spent solving this homework?
+	Most of the time I spent doing the homework was largely spent attempting the logic in my head (I was lazy), so I could likely have
+	cut down on a decent amount of time by working out the problems on paper and giving rough work to allow myself to keep a better
+	track of my work.
+
+
+2.     What could I (the instructor) have done better to improve your learning experience in this homework?
+	I think that the homework was good in the sense that the topics that appeared were covered well and didn't involve super specific
+	test cases. I think I would have liked better methods to provide answers (possibly more examples or templates?) as it did seem a 
+	little crowded and dense in question 4 but concept learning wise I saw no issues.
+
+
+3.     What do you know now that you did not know before beginning the homework?
+	I have a much better grasp on condition strengths (I think) than before the homework as I was a bit iffy but only realized while
+	doing the homework itself. I did do more outside the homework after identifying it though.

@@ -1,0 +1,52 @@
+
+	Write a pseudocode algorithm for division. State the loop invariant for the main loop and prove partial correctness.
+
+		pseudocode:
+		
+		PatPoly div(RatNum[] u, RatNum[] v)
+		{Precondition: u.degree >= v.degree > 0; !(v.equals(ZERO))}
+		{
+			RatNum[] q = {0};
+			RatNum[] r = u;
+			
+			while (!(r.equals(ZERO)) && r.degree >= v.degree) {
+			
+				RatNum i = r[r.degree - 1] / v[v.degree - 1];
+				q = q + i;
+				r = r - (i * v);
+			}
+			
+			return q, r;
+		}
+		{Postcondition: u = q * v + r}
+		
+		
+		
+		
+		Loop invariant: u = q * v + r
+		Proof:
+		Base Case:
+			The loop invariant consists of a single expression. To prove the base case for this expression we must prove that q * v + r is
+			equal to u. To do this, plug in the values for q and r. This will give {0} * v + u = u. This is equivalent to u regardless of the
+			value of v. This the base case is true.
+		
+		Induction Step:
+			Assuming it is true for the k'th iteration, we must prove it is true for the (k+1)'th iteration. First find the values that undergo 
+			change. 
+				new_q = old_q + new_i
+				new_r = old_r - (new_i * v)
+			Rearranging these for the (k+1)'th iteration gives:
+			(k+1)'th = new_q * v + new_r
+					new_q * v + new_r = (old_q + new_i) * v + (old_r - (new_i * v))
+									  = (old_q + new_i - new_i) * v + old_r
+									  = old_q * v + old_r
+			The (k+1)'th u value will have the same total value as the k'th u value and therefore will satisfy the loop invariant for the 
+			(k+1)'th iteration. Thus this satisfies induction step.
+		
+		Partial Correctness
+			Loop exit condition: r.equals(ZERO) || r.degree < v.degree
+			Loop invariant: u = q * v + r
+			Because the loop invariant is the same as the postcondition and does not violate the exit condition, this satisfies the 
+			principle of partial correctness.
+				
+				

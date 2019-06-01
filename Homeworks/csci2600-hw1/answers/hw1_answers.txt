@@ -1,0 +1,159 @@
+
+
+Problem 1
+
+1. { x is even && y == x + 1 }
+
+2. {1 ≤ x ≤ 3 }
+
+3. { x > 0 && y > 0 }
+
+4. {x is divisible by 50 }
+
+5. { x = 3 }
+
+6. abs(result*result - x) ≤ 0.000001
+
+
+
+Problem 2
+
+1. Valid
+
+2. Valid
+
+3. Invalid because the precondition states the sum of i and j are not equal to 0, but after going through the statements, i will change to 
+   i + 1 and j to j - 1 so the sum of i and j will be i + 1 + j - 1 = i + j, which still results in the same sum from the precondition. as 
+   the value of the sum itself has not changes, i + j will still not be equal to 0 as it shows in the postcondition. To make the 
+   postcondition valid, it must be changed to i + j != 0.
+
+4. Invalid, because {m == x && x > y } || { m == y && y < x } will work fine when x > y since it will return m == x and it will be fine when
+   y < x and it gives m == y. However, it is possible to fail the postcondition in the scenario when x == y because in this case, 
+   {m == x && x > y } will fully evaluate to false and in { m == y && y < x }, m == y will be true but y < x will be false. This will lead the 
+   postcondition to false || false and cause it to fail. Therefore, this can be mended by changing the postcondition to 
+   {m == x && x > y } || { m == y && y <= x }
+
+
+
+Problem 3
+
+1. Valid
+
+2. Possibly Invalid
+
+
+
+Problem 4
+
+1. 		{ x > 0 }
+ 	x = 10;
+		{ x == 10 }
+	y = 20 - x;
+		{ y == 10 && x == 10 }
+	z = y + 4;
+		{ z == 14 && y == 10 && x == 10 }
+	y = 0;
+		{ y == 0 && z == 14 && x == 10 }
+		
+2. 		{ |x| > 11 }
+ 	x = -x;
+		{ x > 11 || x < -11 }
+	x = x * x;
+		{ x > 144 }
+	x = x + 1;
+		{ x > 145}
+		
+3. 		{ |x| < 5 }
+ 	if (x > 0) {
+ 			{ 0 < x < 5 }
+ 		y = x + 2;
+ 			{ 2 < y < 7 && 0 < x < 5 }
+	} else {
+ 			{ -5 < x <= 0 }
+ 		y = x - 1;
+ 			{ -6 < y < 0 && -5 < x <= 0 }
+	}
+ 		{ (2 < y < 7 && 0 < x < 5) || (-6 < y < 0 && -5 < x <= 0) }
+
+
+
+Problem 5
+
+1. 		{ wp(x = -5, y > -2 * x) = (y > 10) }
+ 	x = -5;
+ 		{ wp(z = 2 * x + y, z > 0) = (2 * x + y > 0) = (y > -2 * x) }
+ 	z = 2 * x + y;
+ 		{ z > 0 }
+
+
+2. 		{ wp(x > 1, x > 7) = (x > 1) || wp(x <= 0, x < -3) = (x < -3) }
+	if (x > 0) {
+		{ wp(x = x + 6, x > 7) = (x + 6 > 7) = (x > 1) }
+ 	x = x + 6;
+ 	else {
+ 			{ wp(x = 4 – x, x > 7) = (4 - x > 7) = (x < -3) }
+ 		x = 4 – x;
+ 	}
+ 		{ x > 7 }
+
+
+3. 		{ wp(x > 4, x > 3) = (x > 4) || wp(x <= 4, x > -1) = (-1 < x <= 4) } 
+ 	if (x > 4) {
+ 			{ wp(x = x - 3, x > 0) = (x - 3 > 0) = (x > 3) }
+ 		x = x - 3;
+ 	} else {
+ 			{ (wp(x < -4, x > -3) = (False) || wp(x = x + 1, x > 0) = (x > -1)) = (x > -1) }
+ 		if (x < - 4) {
+ 				{ wp(x = x + 3, x > 0) = (x + 3 > 0) = (x > -3) }
+ 			x = x + 3;
+ 		} else {
+ 				{ wp(x = x + 1, x > 0) = (x + 1 > 0) = (x > -1) }
+ 			x = x + 1;
+		}
+ 	}
+ 		{ x > 0 }
+
+
+4. 		{ wp(x = y + 2, x > 2 * y - 1) = (y + 2 > 2 * y - 1) = (y < 3) }
+ 	x = y + 2;
+ 		{ wp(z = x + 1, z > 2 * y) = (x + 1 > 2 * y) = (x > 2 * y - 1) }
+ 	z = x + 1;
+ 		{ z > 2 * y}
+
+
+5.		{ wp(x ≥ 0, x != 0) = (x > 0) || wp(x < 0, x != -1) = (x < -1) }
+ 	if (x ≥ 0)
+ 			{ wp(z = x, z != 0) = (x != 0) }
+ 		z = x;
+ 	else
+ 			{ wp(z = x + 1, z != 0) = (x + 1 != 0) = (x != -1) }
+ 		z = x + 1;
+ 		{ z != 0 } 
+
+
+
+Problem 6
+
+1. 		{ x < 2 }
+ 		{ wp(z = x - 1, z < 0) = (x - 1 < 0) = (x < 1) }
+ 	z = x - 1;
+ 		{ wp(w = -z, w > 0) = (-z > 0) = (z < 0) }
+ 	w = -z;
+ 		{ wp(w = w + 1, w > 1) = (w + 1 > 1) = (w > 0)}
+ 	w = w + 1;
+ 		{w > 1}
+ 	The precondition is insufficient for the post condition as the the weakest possible precondition is x < 1 while the true precondition
+ 	is x < 2. x < 2 is weaker than the weakest precondition x < 1 and therefore cannot guarantee the postcondition.
+ 
+
+2. 		{ (x == y && y > 0) || (y != x) }
+ 		{ wp(x == y, -1 < y) = (x == y && y > -1) || wp(x != y, True) = (x != y) }
+ 	if(x == y)
+ 		{ wp(x = –1, x < y) = (-1 < y) }
+		x = -1;
+ 	else
+ 		{ wp(x = y – 1, x < y) = (y - 1 < y) = (True) }
+ 		x = y – 1;
+ 	{ x < y }
+
+

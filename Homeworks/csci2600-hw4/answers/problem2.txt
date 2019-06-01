@@ -1,0 +1,6 @@
+
+For my tests, I attempted to use the Equivalence Partitioning heuristic. This heuristic focuses on covering all possible combinations or 
+possibilities for input (though it can be for outputs, etc. I focused on more on inputs). Through this, I attempted to list all the possible input
+conditions that can be input and the intended outcomes from these.
+
+I went back and added three specific test cases I had forgotten about that will test when the addEdge is being added with Nodes outside the Graph.

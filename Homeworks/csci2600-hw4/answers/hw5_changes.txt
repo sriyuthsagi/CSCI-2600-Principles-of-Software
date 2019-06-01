@@ -1,0 +1,49 @@
+
+Added method numNodes for testing purposes.
+Added method numEdges for testing purposes.
+Added method clear for clearing in the start of createNewGraph.
+Added method contains for checking for node presence in the graph for path.
+Added method listChildrenSorted for finding the children of a node and sorting them automatically.
+
+Changed from two TreeSets that stored nodes and edges to a map with String keys to HashSet Edges values that makes finding children much more 
+practical in Graph
+
+
+	/**
+		@return: this Graph object's number of Nodes
+	 */
+	public int numNodes() {
+		return nodes.size();
+	}
+	
+	
+	
+	
+	/**
+		@return: this Graph object's number of Edges
+	 */
+	public int numEdges() {
+		return edges.size();
+	}
+	
+	
+	
+	/**
+		@modifies: nodees and edges
+		@effects: clears nodes and edges
+	 */
+	public void clear() {
+		nodes.clear();
+		edges.clear();
+		checkRep();
+	}
+	
+	
+	
+	/**
+		@param: a node n to check for in nodes
+		@return: true if node n is on the graph, false otherwise
+	 */
+	public boolean contains(String n){
+		return nodes.contains(n);
+	}

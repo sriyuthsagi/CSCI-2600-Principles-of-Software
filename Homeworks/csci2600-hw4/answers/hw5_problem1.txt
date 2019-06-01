@@ -1,0 +1,109 @@
+
+1.	Which of the B.m methods below are function subtypes of A.m? For each of the B.m methods answer whether the method would overload or 
+	override A.m in Java. Assume Z is a subclass of Y, and Y is subclass of X.
+      class A {
+        Object m(X y, String s);
+      }
+ 
+      class B extends A {
+        X m(X y, String s);
+        Y m(Object y, Object s);
+        Z m(Y y, String s);        
+      }
+      
+      X m(X y, String s); Is a subtype and would override A.m in Java.
+      Y m(Object y, Object s); Is a subtype and would overload A.m in Java.
+      Z m(Y y, String s); Is not a subtype and would overload A.m in Java.
+
+
+
+
+2.	For each pair of specifications below, answer whether the extending class is a true subtype of its superclass. Explain your answer.
+
+    class Triangle {
+       // modifies: this
+       // effects: this_post.a=a, this_post.b=b, this_post.c=c
+       void setSides(int a, int b, int c);
+    }  
+ 
+    class IsoscelesTriangle extends Triangle {
+       // modifies: this
+       // effects: this_post.a=a, this_post.b=b, this_post.c=b
+       void setSides(int a, int b, int c);
+    }
+    	IsoscelesTriangle is not a true subtype of Triangle. This is because override methods have the same specification strength and
+    	different effect but IsoscelesTriangle never uses c so the specification should actually only include a and b so it violates this
+    	rule.
+    
+    
+    
+    
+    abstract class Vertebrate extends Animal {   
+       // returns: an integer > 0 
+       int neckBones();
+    }
+    class Squid extends Vertebrate {
+       // returns: 0 neck bones
+       int neckBones();
+    }
+    class Human extends Vertebrate {
+       // returns: 7 neck bones
+       int neckBones();
+    }
+    	Human is a true subtype of Vertebrate, but Squid is not. Human is a true subtype because it returns a specific integer rather than
+    	any positive integer so it has a stronger specification and the integer is within the return range for Vertebrate. This makes it a 
+    	true subtype but Squid is not because, even though it has a stronger specification, the return value is not within the required range.
+    
+    
+    
+    
+    class Bicycle {
+       int cadence;
+       int speed;
+       int gear;
+ 
+       // effects: creates a new Bicycle
+       Bicycle(int startCadence, int startSpeed, int startGear);
+ 
+       // modifies: this
+       // effects: this_post.cadence=newCadence, this_post.speed=newSpeed, this_post.gear=newGear
+       void setParameters(int newCadence, int newSpeed, int newGear);
+    }
+ 
+    class MountainBike extends Bicycle {
+       int height;
+       
+       // effects: creates a new MountainBike
+       MountainBike(int startCadence, int startSpeed, int startGear, int startHeight);
+ 
+       // modifies: this
+       // effects: this_post.height=newHeight
+       void setHeight(int newHeight);
+    }
+    	MountainBike is a true subtype of Bicycle. This is because it doesn't modify any of the methods found in Bicycle and only adds extras to
+    	the existing data from Bicycle. MountainBike simply acts as a Bicycle with added functions since it does not override anything from 
+    	Bicycle.
+    
+    
+    
+    
+    class Account {
+       // modifies: this
+       // effects: this_post.amount = this_pre.amount + d;
+       void deposit(int d);
+    }
+ 
+    /* An account that works safely when multiple transactions attempt deposits simultaneously */
+    class ConcurrentAccount extends Account {
+       // modifies: this
+       // effects: this_post.amount = this_pre.amount + d;
+       // throws: AbortException if another transaction is in the process of depositing money
+       void deposit(int d);
+    }
+    	ConcurrentAccount is not a true subtype of Account. This is because the presence of an exception in the override method makes it so 
+    	the override method has a different functionality that can confuse users who should assume that ConcurrentAccount can do anything
+    	that Account can do. This is no longer true so it is not a true subtype.
+    
+    
+    
+    

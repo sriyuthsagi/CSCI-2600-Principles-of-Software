@@ -1,0 +1,16 @@
+
+My code represented a Collection of Nodes and a collection of Edges that exist independent of one another. 
+	The advantages of such a method are that it makes it easy to access the Nodes or Edges independant of each other and visualization of 
+	the graph becomes much easier.
+
+
+As a collection of edges.
+	It allows for simple Object structure and will take up less memory as the Graph gets larger.
+
+
+As an adjacency list, in which each node is associated with a list of its outgoing edges.
+	It is easy to keep track of the Nodes in the graph and the children of each node and makes adding Nodes or Edges simple.
+
+
+As an adjacency matrix, which explicitly represents, for every pair ⟨A,B⟩ of edges, whether there is a link from A to B, and how many.
+	It will show all possible Edges which makes accessing, checking, adding or removing specific Edges bery easy.

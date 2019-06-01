@@ -1,0 +1,155 @@
+
+
+
+public class Graph {
+	
+	/**
+		Graph represents a mutable graph containing a set of Nodes (in the form of String objects) and Edges (in the form of a seperate class)
+		
+		
+		Representation Invariant: All Nodes in the graph are unique and Edges must connect Nodes inside the graph
+		
+		
+		Abstraction Function: A Graph ex exists where ex.nodes represents a collection of Nodes while ex.edges represents a collection of Edges.
+		
+ 	*/
+	
+	
+	
+	/**
+		@effects: Constructs a new empty Graph
+	 */
+	public Graph(){
+		throw new RuntimeException();
+	}
+	
+	
+	/**
+		@param: A new node new_node to be added
+		@modifies: nodes
+		@effects: adds the new_node to nodes if new_node is not already present
+		@throws: if new_node is null or is already present in the graph
+	 */
+	public void addNode(String new_node) {
+		throw new RuntimeException();
+	}
+	
+	
+	/**
+		@param: A new edge new_edge to be added
+		@modifies: edges
+		@effects: adds the new_edge to edges
+		@throws: if either of the two nodes stored in the new_edge isn't in the graph
+	 */
+	public void addEdge(Edge new_edge) {
+		throw new RuntimeException();
+	}
+	
+	
+	
+	/**
+		@return: this Graph object's Nodes
+	 */
+	public TreeSet<String> getNodes() {
+		throw new RuntimeException();
+	}
+	
+	
+	
+	/**
+		@return: this Graph object's Edges
+	 */
+	public TreeSet<Edge> getEdges() {
+		throw new RuntimeException();
+	}
+	
+	
+	
+	/**
+		@throw: if the object violates the representation invariant 
+	 */
+	private void checkRep() throws RuntimeException {
+		throw new RuntimeException();
+	}
+	
+	
+}
+
+
+
+
+
+
+
+public class Edge {
+	
+	/**
+		Graph represents an immutable object containing a directed edge between two nodes with a label 
+		
+		
+		Representation Invariant: The starting node, ending node and label cannot be empty
+		
+		
+		Abstraction Function: A node ex exists where ex.start represents a node while ex.end represents another node and ex.label represents
+		a label for the edge
+		
+ 	*/
+	
+	
+	
+	/**
+		@param: node1 The start-node of the new Edge
+		@param: node2 The end-node of the new Edge
+		@param: lab The length of the new Edge
+		@effects: creates a new edge from node1 to node2 with a label lab
+	 */
+	public Edge(String node1, String node2, String lab) {
+		throw new RuntimeException();
+	}
+	
+	
+	/**
+		@return: this Edge object's parent Node
+	 */
+	public String getParent() {
+		throw new RuntimeException();
+	}
+	
+	
+	/**
+		@return: this Edge object's child Node
+	 */
+	public String getChild() {
+		throw new RuntimeException();
+	}
+	
+	
+	
+	/**
+		@return: this Edge object's label
+	 */
+	public String getLabel() {
+		throw new RuntimeException();
+	}
+	
+	
+	
+	/**
+		@throw: if the object violates the representation invariant 
+	 */
+	private void checkRep() throws RuntimeException {
+		throw new RuntimeException();
+	}
+	
+	
+	
+	/** 
+		@param: an Edge other_edge to be compared
+		@requires: other_edge is not empty
+		@return: 0 if this = other_edge, a positive number if this > other_edge or a negative number if this < other_edge.
+	 */
+	@Override
+    public int compareTo(Edge other_edge) {
+        throw new RuntimeException();
+    }
+}

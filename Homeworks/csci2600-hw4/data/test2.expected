@@ -1,0 +1,5 @@
+Menu:
+b lists all buildings (only buildings) in the form name,id in lexicographic (alphabetical) order of name.
+r prompts the user for the ids or names of two buildings and prints directions for the shortest route between them.
+q quits the program.
+m prints a menu of all commands.
